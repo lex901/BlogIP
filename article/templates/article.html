@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% load static %}
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+{% block article %}
+<div class="col-md-8 box">
+<h4>{{ article.article_date }}</h4>
+<h2>{{ article.article_title }}</h2>
+<p>{{ article.article_text }}</p>
+<hr>
+</div>
+<div class="col-md-8 box">
+<p>Комментарии:</p>
+{%  for comment in comments %}
+    <p>{{ comment.comments_text }}</p>
+{% endfor %}
+    {% if username %}
+    <form action="/articles/addcomment/{{ article.id }}/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" class="button" value="Добавить комментарий">
+    </form>
+    {% endif %}
+
+ </div>
+{%  endblock %}

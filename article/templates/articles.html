@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block article %}
+<div class="container">
+			<div class="row">
+				<div class="col-md-3 box profile">
+				<aside>
+					<img src="{% static 'img/lun.jpg' %}" alt="Mr Froid">
+                    <label>Your granny</label>
+				</aside>
+			</div>
+			<div class="col-md-8 box">
+{% for article in articles %}
+                <article>
+					<header><h2><a href="/articles/get/{{ article.id }}/">{{ article.article_title }}</a></h2></header>
+					<footer><small>Дата публикации:{{ article.article_date }}</small></footer>
+				    <div class="lead">{{ article.article_text }}</div>
+                    <p><a href="/articles/addlike/{{ article.id }}/"><img src="{% static 'images.jpg' %}" width="25px" height="25px"></a>{{ article.article_likes }}</p>
+
+				</article>
+
+{% endfor %}
+
+    <div class="row">
+        <div class="large-3 large-offset-5 columns">
+            <ul class="pagination">
+                {% if articles.has_previous %}
+                    <li class="arrow"><a href="/page/{{ articles.previous_page_number }}/">&laquo;</a></li>
+                {% else %}
+                    <li class="arrow unavailable"><a href="">&laquo;</a></li>
+                {% endif %}
+                {% for page in articles.paginator.page_range %}
+                    {% if page == articles.number %}
+                        <li class="current"><a href="/page/{{ page }}/">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="/page/{{ page }}/">{{ page }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if articles.has_next %}
+                    <li class="arrow"><a href="/page/{{ articles.next_page_number }}/">&raquo;</a></li>
+                {% else %}
+                    <li class="arrow unavailable"><a href="">&raquo;</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+            </div>
+    </div>
+{% endblock %}

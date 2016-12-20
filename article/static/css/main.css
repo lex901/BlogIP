@@ -1,0 +1,30 @@
+.jumbotron  {
+	background-image:url(../img/jumbo.jpg);
+	background-size:cover;
+	text-align:center;
+	color:#580606;	
+}
+
+footer {
+	background-color:hsla(0,4%,42%,0.41);	
+}
+
+footer a {
+	color:hsla(0,0%,100%,0.62);
+}
+
+.sitemap a{
+	display:block;
+	font-size:12px;
+	margin-bottom:5px;
+}
+
+.sitemap h5 {
+	font-style:italic;
+	text-decoration:underline;
+	color:hsla(0,0%,100%,1.00);		
+}
+
+.copyright {
+	color:hsla(0,0%,100%,0.62);
+}
